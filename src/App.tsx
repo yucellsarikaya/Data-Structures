@@ -5,6 +5,7 @@ function App() {
   return (
     <div className="App">
       <p>-Array</p>
+      <ArrayPage/>
       <p>-Linked List</p>
       <p>-Stack</p>
       <p>-Queue</p>

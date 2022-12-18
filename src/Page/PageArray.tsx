@@ -1,10 +1,8 @@
-import React from 'react'
-import { ArrayStore as store} from '../Store/ArrayStore'
+import React from "react";
+import { ArrayStore as rootStore } from "../Store/ArrayStore";
 
 const ArrayPage = () => {
-  return (
-    <div>{store.a}</div>
-  )
-}
+  return <div>{rootStore.test() + rootStore.a}</div>;
+};
 
-export default ArrayPage
+export default ArrayPage;
