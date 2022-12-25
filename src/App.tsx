@@ -4,6 +4,8 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { ArrayStore } from "./Store/ArrayStore";
+import PageLinkedList from "./Page/PageLinkedList";
+import { LinkedListStore, clearList } from "./Store/LinkedListStore";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -22,13 +24,17 @@ const style = {
 function App() {
   const [ArrayModal, setArrayModal] = useState(false);
   const ArrayBtn = () => setArrayModal(!ArrayModal);
+  const [LinkedListModal, setLinkedListModal] = useState(false);
+  const LinkedListBtn = () => setLinkedListModal(!LinkedListModal);
   return (
     <div className="App">
       <Button
+        style={{ display: "block" }}
         onClick={() => {
           {
             ArrayBtn();
             ArrayStore.Load();
+            clearList()
           }
         }}
       >
@@ -44,7 +50,28 @@ function App() {
           <ArrayPage />
         </Box>
       </Modal>
-      <p>-Linked List</p>
+
+      <Button
+        style={{ display: "block" }}
+        onClick={() => {
+          {
+            LinkedListBtn();
+            LinkedListStore.Load();
+          }
+        }}
+      >
+        DS Linked List
+      </Button>
+      <Modal
+        open={LinkedListModal}
+        onClose={LinkedListBtn}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <PageLinkedList />
+        </Box>
+      </Modal>
       <p>-Stack</p>
       <p>-Queue</p>
       <p>-Tree</p>
