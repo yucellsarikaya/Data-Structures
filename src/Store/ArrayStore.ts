@@ -33,4 +33,12 @@ export class ArrayStore {
   public static DeleteArray: any[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   public static UpdateArray: any[] = [1, 2, 3, 4];
   public static SetSearch: string | number | undefined = "";
+
+  public static Load = () => {
+    ArrayStore.Array= [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    ArrayStore.PushArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    ArrayStore.DeleteArray= [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    ArrayStore.UpdateArray= [1, 2, 3, 4];
+    ArrayStore.SetSearch = "";
+  };
 }
