@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 const ArrayPage = () => {
   let [index, setIndex] = useState([1]);
 
-  useEffect(() => {
-  }, [setIndex]);
+  useEffect(() => {}, [setIndex]);
 
   const Reflesh = () => {
     setIndex([...index, 1]);

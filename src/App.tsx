@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { ArrayStore } from "./Store/ArrayStore";
 import PageLinkedList from "./Page/PageLinkedList";
 import { LinkedListStore, clearList } from "./Store/LinkedListStore";
+import PageStack from "./Page/PageStack";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -26,6 +27,8 @@ function App() {
   const ArrayBtn = () => setArrayModal(!ArrayModal);
   const [LinkedListModal, setLinkedListModal] = useState(false);
   const LinkedListBtn = () => setLinkedListModal(!LinkedListModal);
+  const [StackModal, setStackModal] = useState(false);
+  const StackBtn = () => setStackModal(!StackModal);
   return (
     <div className="App">
       <Button
@@ -70,6 +73,28 @@ function App() {
       >
         <Box sx={style}>
           <PageLinkedList />
+        </Box>
+      </Modal>
+
+
+      <Button
+        style={{ display: "block" }}
+        onClick={() => {
+          {
+            StackBtn();
+          }
+        }}
+      >
+        DS Stack
+      </Button>
+      <Modal
+        open={StackModal}
+        onClose={StackBtn}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <PageStack />
         </Box>
       </Modal>
       <p>-Stack</p>
