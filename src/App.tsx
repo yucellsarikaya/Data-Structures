@@ -7,6 +7,7 @@ import { ArrayStore } from "./Store/ArrayStore";
 import PageLinkedList from "./Page/PageLinkedList";
 import { LinkedListStore, clearList } from "./Store/LinkedListStore";
 import PageStack from "./Page/PageStack";
+import PageQueue from "./Page/PageQueue";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -29,6 +30,8 @@ function App() {
   const LinkedListBtn = () => setLinkedListModal(!LinkedListModal);
   const [StackModal, setStackModal] = useState(false);
   const StackBtn = () => setStackModal(!StackModal);
+  const [QueueModal, setQueueModal] = useState(false);
+  const QueueBtn = () => setQueueModal(!QueueModal);
   return (
     <div className="App">
       <Button
@@ -37,7 +40,7 @@ function App() {
           {
             ArrayBtn();
             ArrayStore.Load();
-            clearList()
+            clearList();
           }
         }}
       >
@@ -76,7 +79,6 @@ function App() {
         </Box>
       </Modal>
 
-
       <Button
         style={{ display: "block" }}
         onClick={() => {
@@ -97,8 +99,28 @@ function App() {
           <PageStack />
         </Box>
       </Modal>
-      <p>-Stack</p>
-      <p>-Queue</p>
+
+      <Button
+        style={{ display: "block" }}
+        onClick={() => {
+          {
+            QueueBtn();
+          }
+        }}
+      >
+        DS Queue
+      </Button>
+      <Modal
+        open={QueueModal}
+        onClose={QueueBtn}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <PageQueue />
+        </Box>
+      </Modal>
+
       <p>-Tree</p>
       <p>-Graph</p>
       <p>-Searching</p>
