@@ -92,7 +92,7 @@ const PageSorting = () => {
 
 export default PageSorting;
 
-{
+
   /* <BallTriangle
         height={100}
         width={100}
@@ -101,4 +101,4 @@ export default PageSorting;
         ariaLabel="ball-triangle-loading"
         visible={spinner}
       /> */
-}
+
