@@ -9,6 +9,7 @@ import { LinkedListStore, clearList } from "./Store/LinkedListStore";
 import PageStack from "./Page/PageStack";
 import PageQueue from "./Page/PageQueue";
 import PageSearching from "./Page/PageSearching";
+import PageSorting from "./Page/PageSorting";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -35,6 +36,9 @@ function App() {
   const QueueBtn = () => setQueueModal(!QueueModal);
   const [SearchingModal, setSearchingModal] = useState(false);
   const SearchingBtn = () => setSearchingModal(!SearchingModal);
+  
+  const [SortingModal, setSortingModal] = useState(false);
+  const SortingBtn = () => setSortingModal(!SortingModal);
   return (
     <div className="App">
       <Button
@@ -125,6 +129,7 @@ function App() {
       </Modal>
 
       <p>-Tree</p>
+
       <Button
         style={{ display: "block" }}
         onClick={() => {
@@ -145,7 +150,27 @@ function App() {
           <PageSearching />
         </Box>
       </Modal>
-      <p>-Sorting</p>
+
+      <Button
+        style={{ display: "block" }}
+        onClick={() => {
+          {
+            SortingBtn();
+          }
+        }}
+      >
+        DS Sorting
+      </Button>
+      <Modal
+        open={SortingModal}
+        onClose={SortingBtn}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <PageSorting />
+        </Box>
+      </Modal>
     </div>
   );
 }
