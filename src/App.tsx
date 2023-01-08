@@ -8,6 +8,7 @@ import PageLinkedList from "./Page/PageLinkedList";
 import { LinkedListStore, clearList } from "./Store/LinkedListStore";
 import PageStack from "./Page/PageStack";
 import PageQueue from "./Page/PageQueue";
+import PageSearching from "./Page/PageSearching";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -32,6 +33,8 @@ function App() {
   const StackBtn = () => setStackModal(!StackModal);
   const [QueueModal, setQueueModal] = useState(false);
   const QueueBtn = () => setQueueModal(!QueueModal);
+  const [SearchingModal, setSearchingModal] = useState(false);
+  const SearchingBtn = () => setSearchingModal(!SearchingModal);
   return (
     <div className="App">
       <Button
@@ -122,8 +125,26 @@ function App() {
       </Modal>
 
       <p>-Tree</p>
-      <p>-Graph</p>
-      <p>-Searching</p>
+      <Button
+        style={{ display: "block" }}
+        onClick={() => {
+          {
+            SearchingBtn();
+          }
+        }}
+      >
+        DS Searching
+      </Button>
+      <Modal
+        open={SearchingModal}
+        onClose={SearchingBtn}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <PageSearching />
+        </Box>
+      </Modal>
       <p>-Sorting</p>
     </div>
   );
