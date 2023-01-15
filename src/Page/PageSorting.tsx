@@ -1,8 +1,12 @@
-import { StoreSorting as Store, MergeSort as  mergeSort} from "../Store/StoreSorting";
+import {
+  StoreSorting as Store,
+  MergeSort as mergeSort,
+  QuickSort as quickSort,
+} from "../Store/StoreSorting";
+import Array from "../FakeArray.ts/FakeArray";
 import { useEffect, useState } from "react";
 import * as React from "react";
 import Spinner from "../Components/Spinner";
-import { BallTriangle } from "react-loader-spinner";
 import Container from "react-bootstrap/Container";
 
 const PageSorting = () => {
@@ -15,6 +19,8 @@ const PageSorting = () => {
   let [SelectionSortSecond, setSelectionSort] = React.useState<number>(0);
 
   let [MergeSortSecond, setMergeSort] = React.useState<number>(0);
+
+  let [QuickSortSecond, setQuickSort] = React.useState<number>(0);
 
   let [spinner, setSpinner] = React.useState<boolean>(false);
   const Reflesh = () => {
@@ -70,8 +76,21 @@ const PageSorting = () => {
     setSpinner(Store.show);
   };
 
+  const QuickSort = () =>
+    new Promise((resolve, reject) => {
+      const x = quickSort();
+      resolve(QuickSortReflesh(x));
+    });
+
+  const QuickSortReflesh = (data: any) => {
+    setQuickSort(data);
+    Store.show = false;
+    setSpinner(Store.show);
+  };
+
   return (
     <div>
+      <label>Array length: {Array.length}</label>
       <Container>
         <button
           onClick={async () => {
@@ -144,19 +163,27 @@ const PageSorting = () => {
           MergeSortSecond / 1000
         } second.`}</label>
       </Container>
+      <Container>
+        <button
+          onClick={async () => {
+            Reflesh();
+            Store.show = true;
+            setSpinner(Store.show);
+            setTimeout(() => {
+              QuickSort();
+            }, 1000);
+          }}
+        >
+          Quick Sort
+        </button>
+        <br />
+        <label>{`Sorting the Array took ${
+          QuickSortSecond / 1000
+        } second.`}</label>
+      </Container>
       {spinner ? <Spinner /> : <></>}
     </div>
   );
 };
 
 export default PageSorting;
-
-
-/* <BallTriangle
-        height={100}
-        width={100}
-        radius={5}
-        color="#4fa94d"
-        ariaLabel="ball-triangle-loading"
-        visible={spinner}
-      /> */

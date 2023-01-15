@@ -1,7 +1,5 @@
 import { StoreSearching as Store } from "../Store/StoreSearching";
 import Container from "react-bootstrap/Container";
-import Button from "@mui/material/Button";
-import Col from "react-bootstrap/Col";
 import { useEffect, useState } from "react";
 import * as React from "react";
 

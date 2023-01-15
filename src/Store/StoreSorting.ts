@@ -86,14 +86,58 @@ export class StoreSorting {
     }
     return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
   }
+
+  public static quickSort(
+    arr: number[],
+    left: number = 0,
+    right: number = arr.length - 1
+  ): number[] {
+    if (left < right) {
+      const pivotIndex = StoreSorting.partition(arr, left, right);
+      StoreSorting.quickSort(arr, left, pivotIndex);
+      StoreSorting.quickSort(arr, pivotIndex + 1, right);
+    }
+    return arr;
+  }
+
+  public static partition(arr: number[], left: number, right: number): number {
+    const pivot = arr[Math.floor((left + right) / 2)];
+    let i = left;
+    let j = right;
+    while (i <= j) {
+      while (arr[i] < pivot) {
+        i++;
+      }
+      while (arr[j] > pivot) {
+        j--;
+      }
+      if (i <= j) {
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+        i++;
+        j--;
+      }
+    }
+    return i - 1;
+  }
 }
 
 export function MergeSort() {
   const Array2 = [...Array, -1];
   const startTime = Date.now();
+  console.log(Array2[0]);
   const sortArray = StoreSorting.mergeSort(Array2);
-  console.log(Array2[0])
-  console.log(sortArray[0])
+  console.log(sortArray[0]);
+  const endTime = Date.now();
+  const elapsedTime = endTime - startTime;
+  return elapsedTime;
+}
+
+export function QuickSort() {
+  const Array2 = [...Array, -1];
+  const startTime = Date.now();
+  console.log(Array2[0]);
+  const sortArray = StoreSorting.quickSort(Array2)
+  console.log(sortArray[0]);
   const endTime = Date.now();
   const elapsedTime = endTime - startTime;
   return elapsedTime;
@@ -103,4 +147,4 @@ export function MergeSort() {
 // Insertion Sort +
 // Selection Sort +
 // Merge Sort +
-// Quick Sort
+// Quick Sort +
