@@ -12,6 +12,8 @@ const PageSorting = () => {
 
   let [InsertionSortSecond, setInsertionSort] = React.useState<number>(0);
 
+  let [SelectionSortSecond, setSelectionSort] = React.useState<number>(0);
+
   let [spinner, setSpinner] = React.useState<boolean>(false);
   const Reflesh = () => {
     setIndex([...index, 1]);
@@ -38,6 +40,18 @@ const PageSorting = () => {
 
   const InsertionSortReflesh = (data: any) => {
     setInsertionSort(data);
+    Store.show = false;
+    setSpinner(Store.show);
+  };
+
+  const SelectionSort = () =>
+    new Promise((resolve, reject) => {
+      const x = Store.selectionSort();
+      resolve(SelectionSortReflesh(x));
+    });
+
+  const SelectionSortReflesh = (data: any) => {
+    setSelectionSort(data);
     Store.show = false;
     setSpinner(Store.show);
   };
@@ -78,6 +92,24 @@ const PageSorting = () => {
         <br />
         <label>{`Sorting the Array took ${
           InsertionSortSecond / 1000
+        } second.`}</label>
+      </Container>
+      <Container>
+        <button
+          onClick={async () => {
+            Reflesh();
+            Store.show = true;
+            setSpinner(Store.show);
+            setTimeout(() => {
+              SelectionSort();
+            }, 1000);
+          }}
+        >
+          Selection Sort
+        </button>
+        <br />
+        <label>{`Sorting the Array took ${
+          SelectionSortSecond / 1000
         } second.`}</label>
       </Container>
       {spinner ? <Spinner /> : <></>}

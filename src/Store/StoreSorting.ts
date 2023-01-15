@@ -37,10 +37,29 @@ export class StoreSorting {
     const elapsedTime = endTime - startTime;
     return elapsedTime;
   }
+
+  public static selectionSort() {
+    const Array2 = [...Array, -1];
+    const startTime = Date.now();
+    for (let i = 0; i < Array2.length; i++) {
+      let min = i;
+      for (let j = i + 1; j < Array2.length; j++) {
+        if (Array2[j] < Array2[min]) {
+          min = j;
+        }
+      }
+      if (i !== min) {
+        [Array2[i], Array2[min]] = [Array2[min], Array2[i]];
+      }
+    }
+    const endTime = Date.now();
+    const elapsedTime = endTime - startTime;
+    return elapsedTime;
+  }
 }
 
 // Bubble Sort +
-// Insertion Sort
+// Insertion Sort +
 // Selection Sort
 // Merge Sort
 // Quick Sort
