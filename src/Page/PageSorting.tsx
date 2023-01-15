@@ -1,4 +1,4 @@
-import { StoreSorting as Store } from "../Store/StoreSorting";
+import { StoreSorting as Store, MergeSort as  mergeSort} from "../Store/StoreSorting";
 import { useEffect, useState } from "react";
 import * as React from "react";
 import Spinner from "../Components/Spinner";
@@ -13,6 +13,8 @@ const PageSorting = () => {
   let [InsertionSortSecond, setInsertionSort] = React.useState<number>(0);
 
   let [SelectionSortSecond, setSelectionSort] = React.useState<number>(0);
+
+  let [MergeSortSecond, setMergeSort] = React.useState<number>(0);
 
   let [spinner, setSpinner] = React.useState<boolean>(false);
   const Reflesh = () => {
@@ -52,6 +54,18 @@ const PageSorting = () => {
 
   const SelectionSortReflesh = (data: any) => {
     setSelectionSort(data);
+    Store.show = false;
+    setSpinner(Store.show);
+  };
+
+  const MergeSort = () =>
+    new Promise((resolve, reject) => {
+      const x = mergeSort();
+      resolve(MergeSortReflesh(x));
+    });
+
+  const MergeSortReflesh = (data: any) => {
+    setMergeSort(data);
     Store.show = false;
     setSpinner(Store.show);
   };
@@ -112,6 +126,24 @@ const PageSorting = () => {
           SelectionSortSecond / 1000
         } second.`}</label>
       </Container>
+      <Container>
+        <button
+          onClick={async () => {
+            Reflesh();
+            Store.show = true;
+            setSpinner(Store.show);
+            setTimeout(() => {
+              MergeSort();
+            }, 1000);
+          }}
+        >
+          Merge Sort
+        </button>
+        <br />
+        <label>{`Sorting the Array took ${
+          MergeSortSecond / 1000
+        } second.`}</label>
+      </Container>
       {spinner ? <Spinner /> : <></>}
     </div>
   );
@@ -120,8 +152,7 @@ const PageSorting = () => {
 export default PageSorting;
 
 
-// asdlşföasşldf
-  /* <BallTriangle
+/* <BallTriangle
         height={100}
         width={100}
         radius={5}
@@ -129,4 +160,3 @@ export default PageSorting;
         ariaLabel="ball-triangle-loading"
         visible={spinner}
       /> */
-
