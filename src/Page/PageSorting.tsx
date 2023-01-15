@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 
 const PageSorting = () => {
   let [index, setIndex] = useState([1]);
+
   let [BubbleSortSecond, setBubbleSort] = React.useState<number>(0);
 
   let [InsertionSortSecond, setInsertionSort] = React.useState<number>(0);
@@ -29,17 +30,17 @@ const PageSorting = () => {
     setSpinner(Store.show);
   };
 
-//   const InsertionSort = () =>
-//     new Promise((resolve, reject) => {
-//       const x = Store.insertionSort();
-//       resolve(InsertionSortReflesh(x));
-//     });
+  const InsertionSort = () =>
+    new Promise((resolve, reject) => {
+      const x = Store.insertionSort();
+      resolve(InsertionSortReflesh(x));
+    });
 
-//   const InsertionSortReflesh = (data: any) => {
-//     setInsertionSort(data);
-//     Store.show = false;
-//     setSpinner(Store.show);
-//   };
+  const InsertionSortReflesh = (data: any) => {
+    setInsertionSort(data);
+    Store.show = false;
+    setSpinner(Store.show);
+  };
 
   return (
     <div>
@@ -49,10 +50,7 @@ const PageSorting = () => {
             Reflesh();
             Store.show = true;
             setSpinner(Store.show);
-            //
             setTimeout(() => {
-              //     const x = Store.bubbleSort();
-              //   setSortSecond(x);
               BubbleSort();
             }, 1000);
           }}
@@ -64,16 +62,13 @@ const PageSorting = () => {
           BubbleSortSecond / 1000
         } second.`}</label>
       </Container>
-      {/* <Container>
+      <Container>
         <button
           onClick={async () => {
             Reflesh();
             Store.show = true;
             setSpinner(Store.show);
-            //
             setTimeout(() => {
-              //     const x = Store.bubbleSort();
-              //   setSortSecond(x);
               InsertionSort();
             }, 1000);
           }}
@@ -84,7 +79,7 @@ const PageSorting = () => {
         <label>{`Sorting the Array took ${
           InsertionSortSecond / 1000
         } second.`}</label>
-      </Container> */}
+      </Container>
       {spinner ? <Spinner /> : <></>}
     </div>
   );
@@ -93,7 +88,7 @@ const PageSorting = () => {
 export default PageSorting;
 
 
-
+// asdlşföasşldf
   /* <BallTriangle
         height={100}
         width={100}
